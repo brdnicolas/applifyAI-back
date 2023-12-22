@@ -2,8 +2,9 @@ import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 import { authenticationRoutes } from './routes/authentication/authentication.routes'
 import { testDbConnection } from './config/db'
-
 dotenv.config()
+
+console.log(process.env.POSTGRES_URL, 'ENV POSTGRES URL')
 
 const app: Express = express()
 const port = process.env.PORT || 3000
