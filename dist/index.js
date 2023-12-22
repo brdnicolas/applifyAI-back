@@ -8,7 +8,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const authentication_routes_1 = require("./routes/authentication/authentication.routes");
 const db_1 = require("./config/db");
 dotenv_1.default.config();
-console.log(process.env.POSTGRES_URL, 'ENV POSTGRES URL');
+console.error('process.env.POSTGRES_URL', process.env.POSTGRES_URL);
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
