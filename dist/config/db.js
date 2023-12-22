@@ -16,7 +16,8 @@ exports.testDbConnection = exports.sequelize = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const sequelize_1 = require("sequelize");
-exports.sequelize = new sequelize_1.Sequelize(undefined + '?sslmode=require');
+exports.sequelize = new sequelize_1.Sequelize('postgres://default:uM0VEZ9mOBno@ep-dry-frog-94221771-pooler.eu-central-1.postgres.vercel-storage.com:5432/verceldb' +
+    '?sslmode=require');
 const testDbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield exports.sequelize.authenticate();

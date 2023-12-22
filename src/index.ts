@@ -4,8 +4,6 @@ import { authenticationRoutes } from './routes/authentication/authentication.rou
 import { testDbConnection } from './config/db'
 dotenv.config()
 
-console.error('process.env.POSTGRES_URL', process.env.POSTGRES_URL)
-
 const app: Express = express()
 const port = process.env.PORT || 3000
 
