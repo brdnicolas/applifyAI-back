@@ -20,7 +20,7 @@
     "@typescript-eslint/camelcase": 0,
     "no-shadow": 0,
     "no-case-declarations": 0,
-    "no-console": 1,
+    "no-console": 0,
     "react/forbid-foreign-prop-types": "off",
     "prettier/prettier": [
       "error",

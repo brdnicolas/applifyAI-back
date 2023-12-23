@@ -2,7 +2,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 import { Sequelize } from 'sequelize'
 
-export const sequelize = new Sequelize(process.env.POSTGRES_URL + '?sslmode=require')
+export const sequelize = new Sequelize(process.env.POSTGRES_URL + '?sslmode=require', {
+  logging: false
+})
 
 export const testDbConnection = async () => {
   try {

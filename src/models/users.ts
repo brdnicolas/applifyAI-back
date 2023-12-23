@@ -1,5 +1,5 @@
-import { DataTypes, Model } from 'sequelize'
-import { sequelize } from '../config/db'
+import { DataTypes } from 'sequelize'
+import { sequelize } from '@/config/db'
 import bcrypt from 'bcrypt'
 
 export type UserAttributes = {
