@@ -6,19 +6,16 @@ import { authRoutes } from '@/routes/auth.routes'
 import { applicationsRoutes } from '@/routes/applications.routes'
 import '@/models/associations'
 import swaggerUi from 'swagger-ui-express'
-import swaggerFile from '../swagger-output.json'
+import swaggerConfig from '@/config/swaggerConfig.json'
 
 export const createApp = (): express.Application => {
   const app = express()
 
-  if (process.env.NODE_ENV === 'development') {
-    // Logger Middleware
-    app.use(morgan('dev'))
-  }
-
+  // SWAGGER
   // @ts-ignore
-  app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
+  app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
 
+  // CONFIGURATION
   app.use(cors())
   app.use(express.json())
   app.use(
@@ -26,8 +23,11 @@ export const createApp = (): express.Application => {
       extended: true
     })
   )
+  if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+  }
 
-  // API Routes
+  // ROUTES
   app.use('/api', authRoutes)
   app.use('/api/applications', applicationsRoutes)
 

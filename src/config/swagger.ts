@@ -1,4 +1,4 @@
-const swaggerAutogen = require('swagger-autogen')()
+import swaggerAutogen from 'swagger-autogen'
 
 const doc = {
   info: {
@@ -8,7 +8,7 @@ const doc = {
   host: 'localhost:3000'
 }
 
-const outputFile = './swagger-output.json'
+const outputFile = './swaggerConfig.json'
 const routes = ['./src/app.ts']
 
 /* NOTE: If you are using the express Router, you must pass in the 'routes' only the 

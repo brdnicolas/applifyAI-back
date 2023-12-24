@@ -13,7 +13,7 @@
     "start": "NODE_ENV=production node dist/index.js",
     "watch": "tsc --watch",
     "dev": "NODE_ENV=development nodemon",
-    "swagger": "node swagger.js",
+    "swagger": "ts-node ./src/config/swagger.ts",
     "service:start": "pm2 start ecosystem.config.js",
     "service:reload": "pm2 reload ecosystem.config.js",
     "service:startup": "pm2 startup",
