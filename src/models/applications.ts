@@ -10,6 +10,7 @@ export type ApplicationAttributes = {
   cv: Buffer
   coverLetter: Buffer
   userId: number
+  applicationStateId: number
 }
 export const Application = sequelize.define('application', {
   id: {
@@ -20,9 +21,6 @@ export const Application = sequelize.define('application', {
   job: {
     type: DataTypes.STRING,
     allowNull: false
-  },
-  userId: {
-    type: DataTypes.INTEGER
   },
   company: {
     type: DataTypes.STRING,
@@ -43,6 +41,12 @@ export const Application = sequelize.define('application', {
   coverLetter: {
     type: DataTypes.BLOB('long'),
     allowNull: true
+  },
+  userId: {
+    type: DataTypes.INTEGER
+  },
+  applicationStateId: {
+    type: DataTypes.INTEGER
   }
 })
 
