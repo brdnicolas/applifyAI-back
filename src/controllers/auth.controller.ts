@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { AuthService } from '@/services/auth.service'
-import { UserService } from '@/services/users.services'
+import { UsersService } from '@/services/users.services'
 
 export class AuthController {
   static register = async (req: Request, res: Response) => {
@@ -11,13 +11,13 @@ export class AuthController {
     }
 
     try {
-      const isUserExist = await UserService.getUserByEmail(email)
+      const isUserExist = await UsersService.getUserByEmail(email)
 
       if (isUserExist) {
         return res.status(409).json({ message: 'User already exists' })
       }
 
-      const user = await UserService.createUser(email, password, firstName, lastName)
+      const user = await UsersService.createUser(email, password, firstName, lastName)
       return res.status(201).json(user)
     } catch (error) {
       console.log(error, 'error')
@@ -29,7 +29,7 @@ export class AuthController {
     const { email, password } = req.body
 
     try {
-      const user = await UserService.getUserByEmail(email)
+      const user = await UsersService.getUserByEmail(email)
       if (!user) {
         return res.status(404).json({ message: 'User not found' })
       }

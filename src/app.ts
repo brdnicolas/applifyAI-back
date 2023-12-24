@@ -3,6 +3,8 @@ import express from 'express'
 import morgan from 'morgan'
 import * as process from 'process'
 import { authRoutes } from '@/routes/auth.routes'
+import { applicationsRoutes } from '@/routes/applications.routes'
+import '@/models/associations'
 
 export const createApp = (): express.Application => {
   const app = express()
@@ -22,6 +24,7 @@ export const createApp = (): express.Application => {
 
   // API Routes
   app.use('/api', authRoutes)
+  app.use('/api/applications', applicationsRoutes)
 
   app.use('/health', (_, res) => {
     res.send('OK')

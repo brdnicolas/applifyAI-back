@@ -1,6 +1,6 @@
 import { User, UserAttributes } from '@/models/users'
 
-export class UserService {
+export class UsersService {
   static createUser = async (
     email: string,
     password: string,
