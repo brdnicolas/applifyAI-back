@@ -5,6 +5,8 @@ import * as process from 'process'
 import { authRoutes } from '@/routes/auth.routes'
 import { applicationsRoutes } from '@/routes/applications.routes'
 import '@/models/associations'
+import swaggerUi from 'swagger-ui-express'
+import swaggerFile from '../swagger-output.json'
 
 export const createApp = (): express.Application => {
   const app = express()
@@ -13,6 +15,9 @@ export const createApp = (): express.Application => {
     // Logger Middleware
     app.use(morgan('dev'))
   }
+
+  // @ts-ignore
+  app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
   app.use(cors())
   app.use(express.json())
