@@ -2,8 +2,11 @@ import { Application, ApplicationAttributes } from '@/models/applications'
 import { ApplicationStates } from '@/models/applicationStates'
 
 export class ApplicationsServices {
-  public static async getAllApplications() {
+  public static async getAllApplicationsOfUser(userId: number) {
     return await Application.findAll({
+      where: {
+        userId
+      },
       include: {
         model: ApplicationStates,
         attributes: ['name']

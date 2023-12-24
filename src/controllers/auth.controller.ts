@@ -30,8 +30,9 @@ export class AuthController {
 
     try {
       const user = await UsersService.getUserByEmail(email)
+
       if (!user) {
-        return res.status(404).json({ message: 'User not found' })
+        return res.status(404).json({ message: 'Invalid credentials' })
       }
 
       const isPasswordValid = await AuthService.checkPasswordValidity(password, user.password)

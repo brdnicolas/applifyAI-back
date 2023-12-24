@@ -4,9 +4,11 @@ import { validationResult } from 'express-validator'
 import { EApplicationState } from '@/shared/types'
 
 export class ApplicationsController {
-  public static async getAllApplications(_: Request, res: Response) {
+  public static async getAllApplications(req: Request, res: Response) {
+    const user = req.user
+
     try {
-      const applications = await ApplicationsServices.getAllApplications()
+      const applications = await ApplicationsServices.getAllApplicationsOfUser(user.id)
       return res.status(200).json(applications)
     } catch (error) {
       return res.status(500).json({ message: error })
