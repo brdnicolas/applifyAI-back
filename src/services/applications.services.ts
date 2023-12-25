@@ -26,13 +26,15 @@ export class ApplicationsServices {
     })
   }
 
-  public static async createApplication(application: ApplicationAttributes) {
-    return await Application.create({
-      ...application
-    })
+  public static async createApplication(application: Partial<ApplicationAttributes>) {
+    const dataToUpdate = { ...application }
+    delete dataToUpdate.id
+    delete dataToUpdate.userId
+
+    return await Application.create(dataToUpdate)
   }
 
-  public static async updateApplication(id: number, application: Omit<ApplicationAttributes, 'userId' | 'id'>) {
+  public static async updateApplication(id: number, application: Partial<ApplicationAttributes>) {
     const applicationToUpdate = await Application.findOne({
       where: {
         id
@@ -43,8 +45,12 @@ export class ApplicationsServices {
       }
     })
 
+    const dataToUpdate = { ...application }
+    delete dataToUpdate.id
+    delete dataToUpdate.userId
+
     if (applicationToUpdate) {
-      return await applicationToUpdate.update(application)
+      return await applicationToUpdate.update(dataToUpdate)
     }
     return null
   }
