@@ -31,10 +31,13 @@
     "server"
   ],
   "dependencies": {
+    "@types/cheerio": "^0.22.35",
     "@types/morgan": "^1.9.9",
     "@types/swagger-jsdoc": "^6.0.4",
     "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "axios": "^1.6.3",
     "bcrypt": "^5.1.1",
+    "cheerio": "^1.0.0-rc.12",
     "cors": "^2.8.3",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",

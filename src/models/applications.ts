@@ -7,7 +7,7 @@ export type ApplicationAttributes = {
   company: string
   jobOfferUrl: string
   applicationDate: Date
-  imageUrl: string
+  companyImageUrl: string
   cv: Buffer
   coverLetter: Buffer
   userId: number
@@ -43,7 +43,7 @@ export const Application = sequelize.define('application', {
     type: DataTypes.BLOB('long'),
     allowNull: true
   },
-  imageUrl: {
+  companyImageUrl: {
     type: DataTypes.BLOB('long')
   },
   userId: {

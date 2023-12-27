@@ -92,4 +92,20 @@ export class ApplicationsController {
       return res.status(500).json({ message: error })
     }
   }
+
+  public static async scrapApplication(req: Request, res: Response) {
+    const { jobOfferUrl } = req.body
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json(errors.array())
+    }
+
+    try {
+      const applicationDetails = await ApplicationsServices.getApplicationDetailsFromUrl(jobOfferUrl)
+      return res.status(200).json(applicationDetails)
+    } catch (error) {
+      return res.status(500).json({ message: error })
+    }
+  }
 }

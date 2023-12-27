@@ -1,5 +1,6 @@
 import { Application, ApplicationAttributes } from '@/models/applications'
 import { ApplicationStates } from '@/models/applicationStates'
+import { scrapApplication, ScrappingResult } from '@/scripts/scrapping/main'
 
 export class ApplicationsServices {
   public static async getAllApplicationsOfUser(userId: number) {
@@ -53,5 +54,9 @@ export class ApplicationsServices {
       return await applicationToUpdate.update(dataToUpdate)
     }
     return null
+  }
+
+  public static async getApplicationDetailsFromUrl(jobOfferUrl: string): Promise<ScrappingResult> {
+    return scrapApplication(jobOfferUrl)
   }
 }
