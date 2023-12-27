@@ -20,5 +20,6 @@ export const applicationsValidators = {
     check('id').isInt().withMessage('Invalid id'),
     check('jobOfferUrl').optional().isURL().withMessage('Invalid jobOfferUrl')
   ],
+  delete: [check('id').notEmpty().withMessage('An id is required'), check('id').isInt().withMessage('Invalid id')],
   scrap: [check('jobOfferUrl').notEmpty().isURL().withMessage('A jobOfferUrl is required')]
 }

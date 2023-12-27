@@ -30,7 +30,6 @@ export class ApplicationsServices {
   public static async createApplication(application: Partial<ApplicationAttributes>) {
     const dataToUpdate = { ...application }
     delete dataToUpdate.id
-    delete dataToUpdate.userId
 
     return await Application.create(dataToUpdate)
   }
@@ -58,5 +57,20 @@ export class ApplicationsServices {
 
   public static async getApplicationDetailsFromUrl(jobOfferUrl: string): Promise<ScrappingResult> {
     return scrapApplication(jobOfferUrl)
+  }
+
+  public static async deleteApplication(id: number, userId: number) {
+    const application = await Application.findOne({
+      where: {
+        id,
+        userId
+      }
+    })
+
+    if (application) {
+      return await application.destroy()
+    }
+
+    throw new Error('Application not found')
   }
 }

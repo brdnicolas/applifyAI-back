@@ -12,3 +12,5 @@ applicationsRoutes.post('/', applicationsValidators.creation, authByJWT, Applica
 applicationsRoutes.post('/scrap', applicationsValidators.scrap, authByJWT, ApplicationsController.scrapApplication)
 
 applicationsRoutes.patch('/:id', applicationsValidators.update, authByJWT, ApplicationsController.updateApplication)
+
+applicationsRoutes.delete('/:id', applicationsValidators.delete, authByJWT, ApplicationsController.deleteApplication)

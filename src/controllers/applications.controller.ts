@@ -108,4 +108,22 @@ export class ApplicationsController {
       return res.status(500).json({ message: error })
     }
   }
+
+  public static async deleteApplication(req: Request, res: Response) {
+    const { id } = req.params
+    const user = req.user
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json(errors.array())
+    }
+
+    try {
+      await ApplicationsServices.deleteApplication(+id, user.id)
+
+      return res.status(200).json({ message: 'Application deleted' })
+    } catch {
+      return res.status(404).json({ message: 'Application not found' })
+    }
+  }
 }
