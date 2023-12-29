@@ -13,6 +13,17 @@ export type ApplicationAttributes = {
   userId: number
   applicationStateId: number
 }
+
+export type MinimalApplicationAttributes = {
+  id: number
+  job: string
+  company: string
+  userId: number
+  jobOfferUrl: string
+  applicationDate: Date
+  companyImageUrl: string
+  applicationStateId: number
+}
 export const Application = sequelize.define('application', {
   id: {
     type: DataTypes.INTEGER,

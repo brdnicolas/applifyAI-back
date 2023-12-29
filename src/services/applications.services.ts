@@ -1,4 +1,4 @@
-import { Application, ApplicationAttributes } from '@/models/applications'
+import { Application, ApplicationAttributes, MinimalApplicationAttributes } from '@/models/applications'
 import { ApplicationStates } from '@/models/applicationStates'
 import { scrapApplication, ScrappingResult } from '@/scripts/scrapping/main'
 
@@ -11,7 +11,8 @@ export class ApplicationsServices {
       include: {
         model: ApplicationStates,
         attributes: ['name']
-      }
+      },
+      attributes: ['id', 'job', 'company', 'jobOfferUrl', 'applicationDate', 'companyImageUrl']
     })
   }
 
@@ -27,7 +28,7 @@ export class ApplicationsServices {
     })
   }
 
-  public static async createApplication(application: Partial<ApplicationAttributes>) {
+  public static async createApplication(application: Partial<MinimalApplicationAttributes>) {
     return await Application.create(application)
   }
 
