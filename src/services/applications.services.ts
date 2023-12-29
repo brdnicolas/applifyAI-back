@@ -28,10 +28,7 @@ export class ApplicationsServices {
   }
 
   public static async createApplication(application: Partial<ApplicationAttributes>) {
-    const dataToUpdate = { ...application }
-    delete dataToUpdate.id
-
-    return await Application.create(dataToUpdate)
+    return await Application.create(application)
   }
 
   public static async updateApplication(id: number, application: Partial<ApplicationAttributes>) {
