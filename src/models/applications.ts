@@ -44,7 +44,8 @@ export const Application = sequelize.define('application', {
     allowNull: true
   },
   companyImageUrl: {
-    type: DataTypes.BLOB('long')
+    type: DataTypes.STRING,
+    allowNull: true
   },
   userId: {
     type: DataTypes.INTEGER
@@ -52,8 +53,4 @@ export const Application = sequelize.define('application', {
   applicationStateId: {
     type: DataTypes.INTEGER
   }
-})
-
-export const ApplicationSync = Application.sync({ alter: true }).then(() => {
-  console.log('Application Model synced')
 })

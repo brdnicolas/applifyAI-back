@@ -44,7 +44,3 @@ export const User = sequelize.define(
     }
   }
 )
-
-export const UserSync = User.sync({ alter: true }).then(() => {
-  console.log('User Model synced')
-})

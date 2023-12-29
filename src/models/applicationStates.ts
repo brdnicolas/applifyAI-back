@@ -21,19 +21,3 @@ export const ApplicationStates = sequelize.define('applicationStates', {
     }
   }
 })
-
-export const ApplicationStatesSync = ApplicationStates.sync({ force: true }).then(async () => {
-  console.log('ApplicationStates Model synced')
-
-  try {
-    await ApplicationStates.bulkCreate([
-      { name: 'applied' },
-      { name: 'relaunched' },
-      { name: 'interviewObtained' },
-      { name: 'archived' }
-    ])
-    console.log('Default application states added')
-  } catch (error) {
-    console.error('[ERROR] - Adding default application states :', error)
-  }
-})

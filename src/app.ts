@@ -5,6 +5,7 @@ import * as process from 'process'
 import { authRoutes } from '@/routes/auth.routes'
 import { applicationsRoutes } from '@/routes/applications.routes'
 import '@/models/associations'
+import '@/models/sync'
 import swaggerUi from 'swagger-ui-express'
 import swaggerConfig from '@/config/swaggerConfig.json'
 
