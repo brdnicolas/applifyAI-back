@@ -39,7 +39,7 @@ export class ApplicationsController {
   public static async createApplication(req: Request, res: Response) {
     const user = req.user
     const errors = validationResult(req)
-    const { id, job, company, jobOfferUrl, applicationDate, cv, coverLetter, applicationStateId } = req.body
+    const { id, job, company, jobOfferUrl, applicationDate, companyImageUrl, applicationStateId } = req.body
 
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array())
@@ -52,9 +52,8 @@ export class ApplicationsController {
         company,
         jobOfferUrl,
         applicationDate,
-        cv,
-        coverLetter,
         userId: user.id,
+        companyImageUrl,
         applicationStateId: applicationStateId || EApplicationState.applied
       })
       return res.status(201).json(application)
