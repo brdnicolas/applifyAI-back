@@ -13,4 +13,8 @@ export class UsersService {
   static getUserByEmail = async (email: string) => {
     return User.findOne({ where: { email } })
   }
+
+  static getUserById = async (id: number) => {
+    return User.findByPk(id)
+  }
 }

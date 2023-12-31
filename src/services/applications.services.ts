@@ -71,4 +71,12 @@ export class ApplicationsServices {
 
     throw new Error('Application not found')
   }
+
+  public static async getApplicationsNumber(userId: number) {
+    return await Application.count({
+      where: {
+        userId
+      }
+    })
+  }
 }

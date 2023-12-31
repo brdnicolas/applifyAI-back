@@ -8,6 +8,7 @@ import '@/models/associations'
 import '@/models/sync'
 import swaggerUi from 'swagger-ui-express'
 import swaggerConfig from '@/config/swaggerConfig.json'
+import { usersRoutes } from '@/routes/users.routes'
 
 export const createApp = (): express.Application => {
   const app = express()
@@ -29,6 +30,7 @@ export const createApp = (): express.Application => {
   }
 
   // ROUTES
+  app.use('/api', usersRoutes)
   app.use('/api', authRoutes)
   app.use('/api/applications', applicationsRoutes)
 
