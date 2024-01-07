@@ -9,9 +9,6 @@ export const applicationsValidators = {
 
     check('applicationDate').optional().isDate().withMessage('Invalid applicationDate'),
 
-    check('cv').optional().isString().withMessage('Wrong cv format'),
-    check('coverLetter').optional().isString().withMessage('Wrong coverLetter format'),
-
     check('applicationStateId').optional().isInt().withMessage('Invalid applicationStateId')
   ],
   findById: [check('id').notEmpty().withMessage('An id is required'), check('id').isInt().withMessage('Invalid id')],

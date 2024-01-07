@@ -9,6 +9,7 @@ import '@/models/sync'
 import swaggerUi from 'swagger-ui-express'
 import swaggerConfig from '@/config/swaggerConfig.json'
 import { usersRoutes } from '@/routes/users.routes'
+import { uploadRoutes } from '@/routes/upload.routes'
 
 export const createApp = (): express.Application => {
   const app = express()
@@ -16,6 +17,8 @@ export const createApp = (): express.Application => {
   // SWAGGER
   // @ts-ignore
   app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
+
+  app.use('/uploads', express.static('uploads'))
 
   // CONFIGURATION
   app.use(cors())
@@ -33,6 +36,7 @@ export const createApp = (): express.Application => {
   app.use('/api', usersRoutes)
   app.use('/api', authRoutes)
   app.use('/api/applications', applicationsRoutes)
+  app.use('/api/upload', uploadRoutes)
 
   app.use('/health', (_, res) => {
     res.send('OK')

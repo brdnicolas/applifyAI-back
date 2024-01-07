@@ -8,9 +8,10 @@ export type ApplicationAttributes = {
   jobOfferUrl: string
   applicationDate: Date
   companyImageUrl: string
-  cv: Buffer
-  coverLetter: Buffer
+  coverLetterUrl: string
   userId: number
+  cvId: number
+  coverLetterId: number
   applicationStateId: number
 }
 
@@ -46,16 +47,16 @@ export const Application = sequelize.define('application', {
     type: DataTypes.DATE,
     allowNull: true
   },
-  cv: {
-    type: DataTypes.BLOB('long'),
-    allowNull: true
-  },
-  coverLetter: {
-    type: DataTypes.BLOB('long'),
-    allowNull: true
-  },
   companyImageUrl: {
     type: DataTypes.STRING,
+    allowNull: true
+  },
+  cvId: {
+    type: DataTypes.INTEGER,
+    allowNull: true
+  },
+  coverLetterId: {
+    type: DataTypes.INTEGER,
     allowNull: true
   },
   userId: {

@@ -1,6 +1,8 @@
 import { Application, ApplicationAttributes, MinimalApplicationAttributes } from '@/models/applications'
 import { ApplicationStates } from '@/models/applicationStates'
 import { scrapApplication, ScrappingResult } from '@/scripts/scrapping/main'
+import { CV } from '@/models/cvs'
+import { CoverLetter } from '@/models/coverLetters'
 
 export class ApplicationsServices {
   public static async getAllApplicationsOfUser(userId: number) {
@@ -17,14 +19,24 @@ export class ApplicationsServices {
   }
 
   public static async getApplicationById(id: number) {
-    return await Application.findOne({
+    return Application.findOne({
       where: {
         id
       },
-      include: {
-        model: ApplicationStates,
-        attributes: ['name']
-      }
+      include: [
+        {
+          model: ApplicationStates,
+          attributes: ['name']
+        },
+        {
+          model: CV,
+          attributes: ['url', 'fileName', 'size']
+        },
+        {
+          model: CoverLetter,
+          attributes: ['url', 'fileName', 'size']
+        }
+      ]
     })
   }
 
@@ -32,15 +44,26 @@ export class ApplicationsServices {
     return await Application.create(application)
   }
 
-  public static async updateApplication(id: number, application: Partial<ApplicationAttributes>) {
+  public static async updateApplication(id: number, userId: number, application: Partial<ApplicationAttributes>) {
     const applicationToUpdate = await Application.findOne({
       where: {
-        id
+        id,
+        userId
       },
-      include: {
-        model: ApplicationStates,
-        attributes: ['name']
-      }
+      include: [
+        {
+          model: ApplicationStates,
+          attributes: ['name']
+        },
+        {
+          model: CV,
+          attributes: ['url', 'fileName', 'size']
+        },
+        {
+          model: CoverLetter,
+          attributes: ['url', 'fileName', 'size']
+        }
+      ]
     })
 
     const dataToUpdate = { ...application }

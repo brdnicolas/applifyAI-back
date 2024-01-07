@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { AuthService } from '@/services/auth.service'
+import { AuthServices } from '@/services/auth.services'
 import { UsersService } from '@/services/users.services'
 
 export class AuthController {
@@ -35,13 +35,13 @@ export class AuthController {
         return res.status(404).json({ message: 'Invalid credentials' })
       }
 
-      const isPasswordValid = await AuthService.checkPasswordValidity(password, user.password)
+      const isPasswordValid = await AuthServices.checkPasswordValidity(password, user.password)
 
       if (!isPasswordValid) {
         return res.status(400).json({ message: 'Invalid password' })
       }
 
-      const token = AuthService.generateJWTToken({
+      const token = AuthServices.generateJWTToken({
         id: user.id,
         email: user.email,
         firstName: user.firstName,

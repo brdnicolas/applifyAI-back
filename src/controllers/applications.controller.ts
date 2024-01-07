@@ -64,20 +64,19 @@ export class ApplicationsController {
   public static async updateApplication(req: Request, res: Response) {
     const { id } = req.params
     const errors = validationResult(req)
-    const { job, company, jobOfferUrl, applicationDate, cv, coverLetter, applicationStateId } = req.body
+    const user = req.user
+    const { job, company, jobOfferUrl, applicationDate, applicationStateId } = req.body
 
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array())
     }
 
     try {
-      const application = await ApplicationsServices.updateApplication(+id, {
+      const application = await ApplicationsServices.updateApplication(+id, user.id, {
         job,
         company,
         jobOfferUrl,
         applicationDate,
-        cv,
-        coverLetter,
         applicationStateId: applicationStateId || EApplicationState.applied
       })
 

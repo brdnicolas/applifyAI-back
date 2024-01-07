@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
 import { UserAttributes } from '@/models/users'
 
-export class AuthService {
+export class AuthServices {
   static generateJWTToken = (payload: Omit<UserAttributes, 'password'>) => {
     return jwt.sign(payload, process.env.SECRET_KEY || '', { expiresIn: '1h' })
   }
