@@ -18,10 +18,11 @@ export class ApplicationsServices {
     })
   }
 
-  public static async getApplicationById(id: number) {
+  public static async getApplicationById(id: number, userId: number) {
     return Application.findOne({
       where: {
-        id
+        id,
+        userId
       },
       include: [
         {

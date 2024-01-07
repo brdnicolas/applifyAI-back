@@ -17,6 +17,7 @@ export class ApplicationsController {
 
   public static async getApplicationById(req: Request, res: Response) {
     const { id } = req.params
+    const user = req.user
     const errors = validationResult(req)
 
     if (!errors.isEmpty()) {
@@ -24,7 +25,7 @@ export class ApplicationsController {
     }
 
     try {
-      const application = await ApplicationsServices.getApplicationById(+id)
+      const application = await ApplicationsServices.getApplicationById(+id, user.id)
 
       if (application) {
         return res.status(200).json(application)
