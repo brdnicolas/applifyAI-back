@@ -3,6 +3,7 @@ import { ApplicationStates } from '@/models/applicationStates'
 import { scrapApplication, ScrappingResult } from '@/scripts/scrapping/main'
 import { CV } from '@/models/cvs'
 import { CoverLetter } from '@/models/coverLetters'
+import { ContractType } from '@/models/contractTypes'
 
 export class ApplicationsServices {
   public static async getAllApplicationsOfUser(userId: number) {
@@ -36,6 +37,10 @@ export class ApplicationsServices {
         {
           model: CoverLetter,
           attributes: ['url', 'fileName', 'size']
+        },
+        {
+          model: ContractType,
+          attributes: ['name']
         }
       ]
     })
@@ -52,6 +57,10 @@ export class ApplicationsServices {
         userId
       },
       include: [
+        {
+          model: ContractType,
+          attributes: ['name']
+        },
         {
           model: ApplicationStates,
           attributes: ['name']
@@ -74,6 +83,7 @@ export class ApplicationsServices {
     if (applicationToUpdate) {
       return await applicationToUpdate.update(dataToUpdate)
     }
+
     return null
   }
 

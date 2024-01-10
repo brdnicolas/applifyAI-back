@@ -21,5 +21,5 @@ uploadRoutes.patch(
   applicationFiles,
   uploadValidators.coverLetter,
   authByJWT,
-  UploadController.uploadCV
+  UploadController.uploadCoverLetter
 )

@@ -13,6 +13,13 @@ export type ApplicationAttributes = {
   cvId: number
   coverLetterId: number
   applicationStateId: number
+  lat: number
+  lng: number
+  city: string
+  country: string
+  postalCode: string
+  street: string
+  contractTypeId: number
 }
 
 export type MinimalApplicationAttributes = {
@@ -51,6 +58,30 @@ export const Application = sequelize.define('application', {
     type: DataTypes.STRING,
     allowNull: true
   },
+  lat: {
+    type: DataTypes.FLOAT,
+    allowNull: true
+  },
+  lng: {
+    type: DataTypes.FLOAT,
+    allowNull: true
+  },
+  city: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  country: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  postalCode: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  street: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
   cvId: {
     type: DataTypes.INTEGER,
     allowNull: true
@@ -64,5 +95,9 @@ export const Application = sequelize.define('application', {
   },
   applicationStateId: {
     type: DataTypes.INTEGER
+  },
+  contractTypeId: {
+    type: DataTypes.INTEGER,
+    allowNull: true
   }
 })

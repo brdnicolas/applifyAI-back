@@ -10,6 +10,7 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerConfig from '@/config/swaggerConfig.json'
 import { usersRoutes } from '@/routes/users.routes'
 import { uploadRoutes } from '@/routes/upload.routes'
+import { eventsRoutes } from '@/routes/events.routes'
 
 export const createApp = (): express.Application => {
   const app = express()
@@ -37,6 +38,7 @@ export const createApp = (): express.Application => {
   app.use('/api', authRoutes)
   app.use('/api/applications', applicationsRoutes)
   app.use('/api/upload', uploadRoutes)
+  app.use('/api/events', eventsRoutes)
 
   app.use('/health', (_, res) => {
     res.send('OK')
