@@ -45,7 +45,8 @@ export const Application = sequelize.define('application', {
   },
   jobOfferUrl: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    defaultValue: ''
   },
   applicationDate: {
     type: DataTypes.DATE,
@@ -65,7 +66,8 @@ export const Application = sequelize.define('application', {
   },
   locationLabel: {
     type: DataTypes.STRING,
-    allowNull: true
+    allowNull: true,
+    defaultValue: ''
   },
   cvId: {
     type: DataTypes.INTEGER,
