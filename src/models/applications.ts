@@ -15,10 +15,7 @@ export type ApplicationAttributes = {
   applicationStateId: number
   lat: number
   lng: number
-  city: string
-  country: string
-  postalCode: string
-  street: string
+  locationLabel: string
   contractTypeId: number
 }
 
@@ -66,19 +63,7 @@ export const Application = sequelize.define('application', {
     type: DataTypes.FLOAT,
     allowNull: true
   },
-  city: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  country: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  postalCode: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  street: {
+  locationLabel: {
     type: DataTypes.STRING,
     allowNull: true
   },

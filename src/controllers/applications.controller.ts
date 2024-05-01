@@ -66,20 +66,8 @@ export class ApplicationsController {
     const { id } = req.params
     const errors = validationResult(req)
     const user = req.user
-    const {
-      job,
-      company,
-      jobOfferUrl,
-      applicationDate,
-      applicationStateId,
-      lat,
-      lng,
-      city,
-      country,
-      postalCode,
-      contractTypeId,
-      street
-    } = req.body
+    const { job, company, jobOfferUrl, applicationDate, applicationStateId, lat, lng, locationLabel, contractTypeId } =
+      req.body
 
     if (!errors.isEmpty()) {
       return res.status(422).json(errors.array())
@@ -94,10 +82,7 @@ export class ApplicationsController {
         applicationStateId: applicationStateId || EApplicationState.applied,
         lat,
         lng,
-        city,
-        country,
-        postalCode,
-        street,
+        locationLabel,
         contractTypeId
       })
 
